@@ -1,24 +1,29 @@
-import {Component, OnInit} from "@angular/core";
-import {RouterExtensions} from "nativescript-angular";
+import { Component } from "@angular/core";
+import { LoginService } from "../../services/login.service";
+
 
 @Component({
     selector: "login",
     moduleId: module.id,
     templateUrl: "./loginView.html",
+    providers: [ LoginService ]
 })
-export class LoginComponent  implements OnInit  {
-    private ids = 8;
+export class LoginComponent {
+    public userName = "";
+    public passWord = "";
 
-    constructor(private routerExtensions: RouterExtensions) {
+    constructor(private loginService: LoginService) {
     }
 
+    public submit() {
 
-    ngOnInit(): void {
-        this.ids = 68;
-
-    }
-
-    public onTap() {
-        this.routerExtensions.navigate(["/home"]);
+        this.loginService.login()
+            .subscribe((result) => {
+                alert(JSON.stringify(result));
+            }, (error) => {
+                console.log(JSON.stringify(error));
+                alert(JSON.stringify(error));
+            });
     }
 }
+

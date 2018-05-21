@@ -1,8 +1,12 @@
-<ActionBar title="Login page" class="action-bar">
-</ActionBar>
+<FlexboxLayout class="page">
+    <StackLayout class="form">
+        <StackLayout class="input-field">
+            <TextField [(ngModel)]='userName' hint="UserName" ...></TextField>
+        </StackLayout>
 
-<StackLayout class="page">
-    <StackLayout class="m-15" sdkExampleTitle sdkToggleNavButton>
-        <Button class="btn btn-primary btn-active" id="button" text="To Home page" (tap)="onTap()"></Button>
+        <StackLayout class="input-field">
+            <TextField [(ngModel)]='passWord' hint="Password" ...></TextField>
+        </StackLayout>
+        <Button text="Log In" (tap)="submit()"></Button>
     </StackLayout>
-</StackLayout>
+</FlexboxLayout>
