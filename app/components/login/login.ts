@@ -16,14 +16,7 @@ export class LoginComponent {
     }
 
     public submit() {
-
-        this.loginService.login()
-            .subscribe((result) => {
-                alert(JSON.stringify(result));
-            }, (error) => {
-                console.log(JSON.stringify(error));
-                alert(JSON.stringify(error));
-            });
+        this.loginService.login(this.userName, this.passWord);
     }
 }
 
