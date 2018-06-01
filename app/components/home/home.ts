@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import { LoginService } from "../../services/login.service";
+import {RouterExtensions} from "nativescript-angular";
 
 @Component({
     selector: "home",
@@ -8,15 +9,17 @@ import { LoginService } from "../../services/login.service";
     providers: [ LoginService ]
 })
 export class HomeComponent implements OnInit {
-    private ids = 5;
 
-    constructor(private loginService: LoginService) {
+    constructor(private loginService: LoginService, private routerExtensions: RouterExtensions) {
     }
 
     ngOnInit(): void {
-        this.ids = 78;
     }
-    public onTap() {
+    public logout() {
         this.loginService.logout();
+    }
+
+    public shipment() {
+        this.routerExtensions.navigate(["/shipment"]);
     }
 }

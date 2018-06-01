@@ -2,11 +2,14 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptFormsModule } from "nativescript-angular/forms"
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
+
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 
 import { HomeComponent } from "./components/home/home";
 import { LoginComponent } from "./components/login/login";
+import {ShipmentComponent} from "./components/shipment/shipment";
 
 
 @NgModule({
@@ -17,12 +20,16 @@ import { LoginComponent } from "./components/login/login";
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptFormsModule,
-        NativeScriptHttpClientModule
+        NativeScriptHttpClientModule,
+        TNSFontIconModule.forRoot({
+            'mdi': 'material-design-icons.css'
+        })
     ],
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent
+        LoginComponent,
+        ShipmentComponent
     ],
     providers: [
         // services

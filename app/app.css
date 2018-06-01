@@ -21,3 +21,7 @@ refer to http://docs.nativescript.org/ui/theme.
     flex-grow: 2;
     vertical-align: middle;
 }
+
+.mdi {
+    font-family: "Material Icons", "MaterialIcons-Regular";
+}
