@@ -1,5 +1,5 @@
 <ScrollView sdkExampleTitle sdkToggleNavButton>
-    <FlexboxLayout class="page">
+    <FlexboxLayout class="page" *ngIf="!duringShipment">
         <StackLayout class="form">
             <StackLayout class="input-field">
                 <TextField [(ngModel)]='id_shipment' hint="ID Shipment" ...></TextField>
@@ -7,7 +7,42 @@
             <StackLayout class="input-field">
                 <TextField [(ngModel)]='code' hint="Code" ...></TextField>
             </StackLayout>
-            <Button text="Start this shipment" (tap)="startShipment()"></Button>
+            <Button text="Start this shipment" (tap)="resolveShipment()"></Button>
+        </StackLayout>
+
+
+        <FlexboxLayout flexDirection="column-reverse">
+            <Button text="Take Photo" class="btn btn-primary btn-active" (tap)="onTakePhoto()" flexGrow="1"></Button>
+            <Button text="Request permissions" class="btn btn-primary btn-active" (tap)="onRequestPermissions()" flexGrow="1"></Button>
+        </FlexboxLayout>
+
+
+        <ListView [items]="imagesTaken" height="{{heightList}}">
+            <ng-template let-item="item" let-i="index">
+                <StackLayout>
+                    <Label class="mdi" [text]="'mdi-favorite' | fonticon" (tap)="deletePhoto(index)"></Label>
+                    <Image [src]="item" flexGrow="3" class="p-15 img-rounded"></Image>
+                </StackLayout>
+            </ng-template>
+        </ListView>
+    </FlexboxLayout>
+
+    <!-- during shipment  -->
+    <FlexboxLayout class="page" *ngIf="duringShipment">
+        <StackLayout class="form">
+            <StackLayout class="input-field">
+                <TextField [(ngModel)]='code' hint="Code" ...></TextField>
+            </StackLayout>
+            <StackLayout class="input-field">
+                <Label [text]='shipment.from.city' ></Label>
+            </StackLayout>
+            <StackLayout class="input-field">
+                <Label [text]='shipment.to.city' ></Label>
+            </StackLayout>
+            <StackLayout class="input-field">
+                <Label [text]='shipment.price' ></Label>
+            </StackLayout>
+            <Button text="Finish this shipment" (tap)="resolveShipment()"></Button>
         </StackLayout>
 
 
