@@ -12,12 +12,11 @@
 
 
         <FlexboxLayout flexDirection="column-reverse">
-            <Button text="Take Photo" class="btn btn-primary btn-active" (tap)="onTakePhoto()" flexGrow="1"></Button>
-            <Button text="Request permissions" class="btn btn-primary btn-active" (tap)="onRequestPermissions()" flexGrow="1"></Button>
+            <Button isEnabled="{{canTakePhoto}}" text="Take Photo" class="btn btn-primary btn-active" (tap)="onTakePhoto()" flexGrow="1"></Button>
         </FlexboxLayout>
 
 
-        <ListView [items]="imagesTaken" height="{{heightList}}">
+        <ListView [items]="renderedImages" height="{{heightList}}">
             <ng-template let-item="item" let-i="index">
                 <StackLayout>
                     <Label class="mdi" [text]="'mdi-favorite' | fonticon" (tap)="deletePhoto(index)"></Label>
@@ -47,12 +46,11 @@
 
 
         <FlexboxLayout flexDirection="column-reverse">
-            <Button text="Take Photo" class="btn btn-primary btn-active" (tap)="onTakePhoto()" flexGrow="1"></Button>
-            <Button text="Request permissions" class="btn btn-primary btn-active" (tap)="onRequestPermissions()" flexGrow="1"></Button>
+            <Button isEnabled="{{canTakePhoto}}" text="Take Photo" class="btn btn-primary btn-active" (tap)="onTakePhoto()" flexGrow="1"></Button>
         </FlexboxLayout>
 
 
-        <ListView [items]="imagesTaken" height="{{heightList}}">
+        <ListView [items]="renderedImages" height="{{heightList}}">
             <ng-template let-item="item" let-i="index">
                 <StackLayout>
                     <Label class="mdi" [text]="'mdi-favorite' | fonticon" (tap)="deletePhoto(index)"></Label>

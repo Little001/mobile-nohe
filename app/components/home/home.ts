@@ -20,6 +20,6 @@ export class HomeComponent implements OnInit {
     }
 
     public shipment() {
-        this.routerExtensions.navigate(["/shipment"]);
+        this.routerExtensions.navigate(["/shipment"], { clearHistory: true });
     }
 }

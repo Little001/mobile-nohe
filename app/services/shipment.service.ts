@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {API_URL, getAuthorizedHeaders} from "~/config";
+import {ShipmentComponent} from "~/components/shipment/shipment";
+import {RouterExtensions} from "nativescript-angular";
 
 @Injectable()
 export class ShipmentService {
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private routerExtensions: RouterExtensions) { }
 
     public postCode(id_shipment: string, code: string, photos: string[]): void {
         let body = new HttpParams();
@@ -16,6 +18,8 @@ export class ShipmentService {
         });
 
         this.http.post(API_URL + "shipment/code", body, {headers: getAuthorizedHeaders()}).subscribe((data) => {
+            ShipmentComponent.removePhotosFromAppSettings();
+            this.routerExtensions.navigate(["/shipment"], { clearHistory: true });
             alert(JSON.stringify(data));
         }, (error) => {
             alert(JSON.stringify(error));
@@ -24,5 +28,18 @@ export class ShipmentService {
 
     public getCurrentlyShipment() {
         return this.http.get(API_URL + "shipment/currently", {headers: getAuthorizedHeaders()});
+    }
+
+    public postGps(id_shipment: string, route: string): void {
+        let body = new HttpParams();
+
+        body = body.set('id_shipment', id_shipment);
+        body = body.set('route', route);
+
+        this.http.post(API_URL + "shipment/route", body, {headers: getAuthorizedHeaders()}).subscribe((data) => {
+            console.log("post gps success");
+        }, (error) => {
+            alert(JSON.stringify(error));
+        });
     }
 }

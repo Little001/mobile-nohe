@@ -5,7 +5,7 @@ import {RouterExtensions} from "nativescript-angular";
 import {platformNames} from "platform";
 import {device} from "platform";
 import {User} from "~/models/User";
-import {API_URL, getUnauthorizedHeaders } from "~/config";
+import {API_URL, APP_SET_TOKEN, getUnauthorizedHeaders} from "../config";
 
 interface LoginResponse {
     Token: string;
@@ -19,16 +19,22 @@ interface LoginResponse {
 @Injectable()
 export class LoginService {
     private user: User;
+    private _isLogged: boolean = false;
     constructor(private http: HttpClient, private routerExtensions: RouterExtensions) { }
 
     public getUser(): User {
         return this.user;
     }
 
+    public islogged(): boolean {
+        return this._isLogged;
+    }
+
     public login(username: string, password: string) {
         let body = new HttpParams();
         let nativePlatformLocalhost;
 
+        appSettings.clear();
         body = body.set('Username', username);
         body = body.set('Password', password);
 
@@ -46,15 +52,16 @@ export class LoginService {
         this.http.post(API_URL + "login", body, { headers: getUnauthorizedHeaders() }).subscribe((data) => {
             let dataResponse = data as LoginResponse;
 
-            appSettings.setString("token", dataResponse.Token);
+            appSettings.setString(APP_SET_TOKEN, dataResponse.Token);
             this.user = new User({
                 ID: dataResponse.User.ID,
                 username: dataResponse.User.username,
                 role: dataResponse.User.role
             });
-            this.routerExtensions.navigate(["/home"]);
+            this._isLogged = true;
+            this.routerExtensions.navigate(["/home"], { clearHistory: true });
         }, () => {
-            this.routerExtensions.navigate(["/login"]);
+            this.routerExtensions.navigate(["/login"], { clearHistory: true });
         });
     };
 
@@ -73,7 +80,9 @@ export class LoginService {
 
 
         this.http.post(API_URL + "logout", null, { headers: getUnauthorizedHeaders() }).subscribe((data) => {
-            this.routerExtensions.navigate(["/login"]);
+            this._isLogged = false;
+            appSettings.clear();
+            this.routerExtensions.navigate(["/login"], { clearHistory: true });
         }, () => {
         });
     };
