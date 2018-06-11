@@ -8,10 +8,11 @@ import * as appSettings from "application-settings";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 import {ImageSource, fromBase64} from "tns-core-modules/image-source";
 import {
-    APP_SET_GPS_ACTIVE, APP_SET_PHOTO_1, APP_SET_PHOTO_2, APP_SET_PHOTO_3, APP_SET_PHOTO_4,
+    APP_SET_GPS_ACTIVE, APP_SET_GPS_ROUTE, APP_SET_PHOTO_1, APP_SET_PHOTO_2, APP_SET_PHOTO_3, APP_SET_PHOTO_4,
     SEND_GPS_IN_MILISECONDS
 } from "../../config";
 import {Accuracy} from "tns-core-modules/ui/enums";
+import {LoginService} from "~/services/login.service";
 
 interface Shipment {
     ID: number,
@@ -24,7 +25,8 @@ interface Shipment {
     selector: "shipment",
     moduleId: module.id,
     templateUrl: "./shipment.html",
-    providers: [ ShipmentService ]
+    styleUrls: ["./shipment.css"],
+    providers: [ ShipmentService, LoginService ]
 })
 
 export class ShipmentComponent implements OnInit, OnDestroy {
@@ -40,7 +42,7 @@ export class ShipmentComponent implements OnInit, OnDestroy {
     private source: ImageSource;
     private photosInBase64: string[];
 
-    constructor(private fonticon: TNSFontIconService,
+    constructor(private fonticon: TNSFontIconService, private loginService: LoginService,
                 private shipmentService: ShipmentService, private routerExtensions: RouterExtensions) {
         this.photosInBase64 = [];
         this.renderedImages = [];
@@ -89,14 +91,20 @@ export class ShipmentComponent implements OnInit, OnDestroy {
         let interval = setInterval(() =>{
             isEnabled().then(() => {
                 getCurrentLocation({ desiredAccuracy: Accuracy.high, maximumAge: 5000, timeout: 500 }).then((value) => {
-                    let route = value.latitude + "," + value.longitude;
-                    this.shipmentService.postGps(this.shipment.ID.toString(), route);
-                    console.log(route);
+                    let appRoute = appSettings.getString(APP_SET_GPS_ROUTE);
+                    let routeFromAppSettings = appRoute ? appRoute + "|" : "";
+                    let route = routeFromAppSettings + value.latitude + "," + value.longitude;
+
+                    this.shipmentService.postGps(this.shipment.ID.toString(), route).subscribe(() => {
+                        appSettings.setString(APP_SET_GPS_ROUTE, "");
+                    }, (error) => {
+                        let appRoute = appSettings.getString(APP_SET_GPS_ROUTE);
+                        appSettings.setString(APP_SET_GPS_ROUTE, appRoute + "|" + route);
+                        console.log("fail postGps -> " + error);
+                    });
                 }, (error) => {
-                    console.log("erorLocation->" + error);
+                    console.log("get current location -> " + error);
                 });
-            }, function (e) {
-                console.log("Error: " + (e.message || e));
             });
 
             if (!appSettings.getString(APP_SET_GPS_ACTIVE)) {
@@ -128,6 +136,10 @@ export class ShipmentComponent implements OnInit, OnDestroy {
         ShipmentComponent.removePhotosFromAppSettings();
         this.refreshAppSettings();
         this.afterChangePhotos();
+    }
+
+    public logout() {
+        this.loginService.logout();
     }
 
     onTakePhoto() {
@@ -208,5 +220,9 @@ export class ShipmentComponent implements OnInit, OnDestroy {
         appSettings.remove(APP_SET_PHOTO_2);
         appSettings.remove(APP_SET_PHOTO_3);
         appSettings.remove(APP_SET_PHOTO_4);
+    }
+
+    public static removeUnUsedAppSettings() {
+        appSettings.remove(APP_SET_GPS_ROUTE);
     }
 }

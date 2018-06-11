@@ -16,12 +16,9 @@ export class AuthGuard implements CanActivate {
         let toState = route.url.toString();
 
         appSettings.setString(APP_SET_LAST_ROUTE, toState);
-        console.log(toState);
-        console.log(appSettings.getString(APP_SET_WAS_SUSPENDED));
         if (toState === "login" && appSettings.getString(APP_SET_WAS_SUSPENDED)) {
             this.routerExtensions.navigate([last_route], { clearHistory: true });
         }
-
 
         appSettings.remove(APP_SET_WAS_SUSPENDED);
         return true;

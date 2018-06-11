@@ -19,10 +19,11 @@ export class ShipmentService {
 
         this.http.post(API_URL + "shipment/code", body, {headers: getAuthorizedHeaders()}).subscribe((data) => {
             ShipmentComponent.removePhotosFromAppSettings();
-            this.routerExtensions.navigate(["/shipment"], { clearHistory: true });
-            alert(JSON.stringify(data));
+            ShipmentComponent.removeUnUsedAppSettings();
+            this.routerExtensions.navigate(["/blank"], { clearHistory: true });
+            alert("Shipment was changed");
         }, (error) => {
-            alert(JSON.stringify(error));
+            alert("Shipment wrong inputs");
         });
     }
 
@@ -30,16 +31,12 @@ export class ShipmentService {
         return this.http.get(API_URL + "shipment/currently", {headers: getAuthorizedHeaders()});
     }
 
-    public postGps(id_shipment: string, route: string): void {
+    public postGps(id_shipment: string, route: string) {
         let body = new HttpParams();
 
         body = body.set('id_shipment', id_shipment);
         body = body.set('route', route);
 
-        this.http.post(API_URL + "shipment/route", body, {headers: getAuthorizedHeaders()}).subscribe((data) => {
-            console.log("post gps success");
-        }, (error) => {
-            alert(JSON.stringify(error));
-        });
+        return this.http.post(API_URL + "shipment/route", body, {headers: getAuthorizedHeaders()});
     }
 }

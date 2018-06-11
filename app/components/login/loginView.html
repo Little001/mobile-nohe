@@ -1,11 +1,13 @@
 <FlexboxLayout class="page">
     <StackLayout class="form">
-        <StackLayout class="input-field">
-            <TextField [(ngModel)]='userName' hint="UserName" ...></TextField>
-        </StackLayout>
-
-        <StackLayout class="input-field">
-            <TextField [(ngModel)]='passWord' hint="Password" ...></TextField>
+        <Image  class="logo" src="~/images/logo.png"></Image>
+        <StackLayout class="inputs">
+            <StackLayout class="input-field">
+                <TextField [(ngModel)]='userName' hint="UserName" ...></TextField>
+            </StackLayout>
+            <StackLayout class="input-field">
+                <TextField [(ngModel)]='passWord' hint="Password" ... secure="true"></TextField>
+            </StackLayout>
         </StackLayout>
         <Button text="Log In" (tap)="submit()"></Button>
     </StackLayout>

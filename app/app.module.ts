@@ -6,10 +6,10 @@ import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 
-import { HomeComponent } from "./components/home/home";
 import { LoginComponent } from "./components/login/login";
-import {ShipmentComponent} from "./components/shipment/shipment";
-import {AuthGuard} from "~/can";
+import { ShipmentComponent } from "./components/shipment/shipment";
+import { BlankComponent } from "./components/blank";
+import { AuthGuard } from "~/authGuard";
 
 
 @NgModule({
@@ -27,9 +27,9 @@ import {AuthGuard} from "~/can";
     ],
     declarations: [
         AppComponent,
-        HomeComponent,
         LoginComponent,
-        ShipmentComponent
+        ShipmentComponent,
+        BlankComponent
     ],
     providers: [
         AuthGuard

@@ -59,9 +59,10 @@ export class LoginService {
                 role: dataResponse.User.role
             });
             this._isLogged = true;
-            this.routerExtensions.navigate(["/home"], { clearHistory: true });
+            this.routerExtensions.navigate(["/shipment"], { clearHistory: true });
         }, () => {
             this.routerExtensions.navigate(["/login"], { clearHistory: true });
+            alert("Wrong username or password");
         });
     };
 

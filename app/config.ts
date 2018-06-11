@@ -10,6 +10,7 @@ export const APP_SET_PHOTO_1 = "photo_1";
 export const APP_SET_PHOTO_2 = "photo_2";
 export const APP_SET_PHOTO_3 = "photo_3";
 export const APP_SET_PHOTO_4 = "photo_4";
+export const APP_SET_GPS_ROUTE = "gps_route";
 export const SEND_GPS_IN_MILISECONDS = 8000;
 
 export function getUnauthorizedHeaders(): HttpHeaders{
