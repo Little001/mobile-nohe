@@ -8,8 +8,8 @@ import { BlankComponent } from "./components/blank";
 import {AuthGuard} from "./authGuard";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/login", pathMatch: "full", canActivate:[AuthGuard] },
-    { path: "login", component: LoginComponent, canActivate:[AuthGuard]},
+    { path: "", redirectTo: "/login", pathMatch: "full" },
+    { path: "login", component: LoginComponent },
     { path: "shipment", component: ShipmentComponent, canActivate:[AuthGuard] },
     { path: "blank", component: BlankComponent, canActivate:[AuthGuard] },
 ];

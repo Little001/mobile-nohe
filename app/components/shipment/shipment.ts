@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {RouterExtensions} from "nativescript-angular";
 import { ShipmentService } from "../../services/shipment.service";
 import * as imageSourceModule  from "tns-core-modules/image-source";
@@ -6,13 +6,12 @@ import { takePicture } from "nativescript-camera";
 import { getCurrentLocation, isEnabled } from "nativescript-geolocation";
 import * as appSettings from "application-settings";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
-import {ImageSource, fromBase64} from "tns-core-modules/image-source";
-import {
-    APP_SET_GPS_ACTIVE, APP_SET_GPS_ROUTE, APP_SET_PHOTO_1, APP_SET_PHOTO_2, APP_SET_PHOTO_3, APP_SET_PHOTO_4,
-    SEND_GPS_IN_MILISECONDS
-} from "../../config";
+import {ImageSource } from "tns-core-modules/image-source";
+import { Page } from "ui/page";
+import { APP_SET_GPS_ACTIVE, APP_SET_GPS_ROUTE, SEND_GPS_IN_MILISECONDS } from "../../config";
 import {Accuracy} from "tns-core-modules/ui/enums";
 import {LoginService} from "~/services/login.service";
+import {Photo} from "~/components/shipment/photo";
 
 interface Shipment {
     ID: number,
@@ -29,23 +28,21 @@ interface Shipment {
     providers: [ ShipmentService, LoginService ]
 })
 
-export class ShipmentComponent implements OnInit, OnDestroy {
+export class ShipmentComponent implements OnInit {
     public id_shipment = "";
     public code = "";
     public canTakePhoto = true;
     public duringShipment = false;
-    public renderedImages: Array<ImageSource> = [];
-    public heightList: number = 0;
+    public photos: Array<Photo> = [];
+    private idPhoto: number = 0;
     public widthPhoto: number = 300;
     public heightPhoto: number = 300;
     public shipment: Shipment;
     private source: ImageSource;
-    private photosInBase64: string[];
 
-    constructor(private fonticon: TNSFontIconService, private loginService: LoginService,
+    constructor(private _page: Page, private fonticon: TNSFontIconService, private loginService: LoginService,
                 private shipmentService: ShipmentService, private routerExtensions: RouterExtensions) {
-        this.photosInBase64 = [];
-        this.renderedImages = [];
+        this.photos = [];
         this.source = new imageSourceModule.ImageSource();
 
         this.shipmentService.getCurrentlyShipment().subscribe((shipment: Shipment) => {
@@ -66,18 +63,7 @@ export class ShipmentComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.photosInBase64 = [];
-        this.setPhotosFromAppSettings();
-
-        for (let i = 0; i < this.photosInBase64.length; i++) {
-            let file = fromBase64(this.photosInBase64[i]);
-            this.renderedImages.push(file);
-        }
-        this.afterChangePhotos();
-    }
-
-    ngOnDestroy() {
-        ShipmentComponent.removePhotosFromAppSettings();
+        this._page.actionBarHidden = true;
     }
 
     private startGps() {
@@ -126,16 +112,15 @@ export class ShipmentComponent implements OnInit, OnDestroy {
         if (!this.inputsAreValid()) {
             return;
         }
-
-        this.shipmentService.postCode(this.id_shipment, this.code, this.photosInBase64);
+        let photosInBase64 = [];
+        for (let i = 0; i < this.photos.length; i++) {
+            photosInBase64.push(this.photos[i].inBase64);
+        }
+        this.shipmentService.postCode(this.id_shipment, this.code, photosInBase64);
     }
 
-    public deletePhoto(index: number): void {
-        this.renderedImages.splice(index, 1);
-        this.photosInBase64.splice(index, 1);
-        ShipmentComponent.removePhotosFromAppSettings();
-        this.refreshAppSettings();
-        this.afterChangePhotos();
+    public deletePhoto(id: number): void {
+        this.photos = this.photos.filter(photo => photo.ID !== id);
     }
 
     public logout() {
@@ -153,11 +138,13 @@ export class ShipmentComponent implements OnInit, OnDestroy {
         takePicture(options)
             .then(imageAsset => {
                 this.source.fromAsset(imageAsset).then((imageSource) => {
-                    let imageInBase64 = imageSource.toBase64String("jpg");
-                    this.photosInBase64.push(imageInBase64);
-                    this.renderedImages.push(imageSource);
+                    let photo = new Photo();
+                    photo.ID = this.idPhoto;
+                    photo.source = imageSource;
+                    photo.inBase64 = imageSource.toBase64String("jpg");
+                    this.idPhoto++;
+                    this.photos.push(photo);
                     this.afterChangePhotos();
-                    this.refreshAppSettings();
                 });
             }).catch(err => {
             console.log(err.message);
@@ -165,8 +152,8 @@ export class ShipmentComponent implements OnInit, OnDestroy {
     }
 
     private inputsAreValid(): boolean {
-        if (this.renderedImages.length !== 4 || this.photosInBase64.length !== 4) {
-            alert("You need 4 photos");
+        if (this.photos.length < 1) {
+            alert("You need min 1 photo");
             return false;
         }
         if (!this.id_shipment) {
@@ -181,45 +168,7 @@ export class ShipmentComponent implements OnInit, OnDestroy {
     }
 
     private afterChangePhotos() {
-        this.heightList = this.heightPhoto * this.renderedImages.length;
-        this.canTakePhoto = this.renderedImages.length < 4;
-    }
-
-    private setPhotosFromAppSettings() {
-        if (appSettings.getString(APP_SET_PHOTO_1)) {
-            this.photosInBase64.push(appSettings.getString(APP_SET_PHOTO_1));
-        }
-        if (appSettings.getString(APP_SET_PHOTO_2)) {
-            this.photosInBase64.push(appSettings.getString(APP_SET_PHOTO_2));
-        }
-        if (appSettings.getString(APP_SET_PHOTO_3)) {
-            this.photosInBase64.push(appSettings.getString(APP_SET_PHOTO_3));
-        }
-        if (appSettings.getString(APP_SET_PHOTO_4)) {
-            this.photosInBase64.push(appSettings.getString(APP_SET_PHOTO_4));
-        }
-    }
-
-    private refreshAppSettings() {
-        if (this.photosInBase64[0]) {
-            appSettings.setString(APP_SET_PHOTO_1, this.photosInBase64[0]);
-        }
-        if (this.photosInBase64[1]) {
-            appSettings.setString(APP_SET_PHOTO_2, this.photosInBase64[1]);
-        }
-        if (this.photosInBase64[2]) {
-            appSettings.setString(APP_SET_PHOTO_3, this.photosInBase64[2]);
-        }
-        if (this.photosInBase64[3]) {
-            appSettings.setString(APP_SET_PHOTO_4, this.photosInBase64[3]);
-        }
-    }
-
-    public static removePhotosFromAppSettings() {
-        appSettings.remove(APP_SET_PHOTO_1);
-        appSettings.remove(APP_SET_PHOTO_2);
-        appSettings.remove(APP_SET_PHOTO_3);
-        appSettings.remove(APP_SET_PHOTO_4);
+        this.canTakePhoto = this.photos.length < 4;
     }
 
     public static removeUnUsedAppSettings() {

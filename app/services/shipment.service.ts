@@ -18,9 +18,8 @@ export class ShipmentService {
         });
 
         this.http.post(API_URL + "shipment/code", body, {headers: getAuthorizedHeaders()}).subscribe((data) => {
-            ShipmentComponent.removePhotosFromAppSettings();
             ShipmentComponent.removeUnUsedAppSettings();
-            this.routerExtensions.navigate(["/blank"], { clearHistory: true });
+            this.routerExtensions.navigate(["/blank"], {clearHistory: true});
             alert("Shipment was changed");
         }, (error) => {
             alert("Shipment wrong inputs");

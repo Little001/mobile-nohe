@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { requestPermissions as cameraRequestPermissions } from "nativescript-camera";
 import { enableLocationRequest } from "nativescript-geolocation";
 
@@ -7,12 +7,17 @@ import { enableLocationRequest } from "nativescript-geolocation";
     templateUrl: "app.component.html",
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
     constructor() {
-        enableLocationRequest().then(()=> {
-            cameraRequestPermissions();
-        }, (error) => {
-            console.log("erorrpermission->" + error);
-        })
+    }
+
+    ngOnInit() {
+        setTimeout(() => {
+            enableLocationRequest().then(()=> {
+                cameraRequestPermissions();
+            }, (error) => {
+                console.log("erorrpermission->" + error);
+            })
+        }, 10);
     }
 }

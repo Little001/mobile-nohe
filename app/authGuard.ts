@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable as RxObservable } from "rxjs";
 import * as appSettings from "application-settings";
 import {RouterExtensions} from "nativescript-angular";
-import {APP_SET_LAST_ROUTE, APP_SET_WAS_SUSPENDED} from "~/config";
+import { APP_SET_TOKEN } from "~/config";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -12,15 +12,11 @@ export class AuthGuard implements CanActivate {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): RxObservable<boolean>|Promise<boolean>|boolean {
-        let last_route = appSettings.getString(APP_SET_LAST_ROUTE);
-        let toState = route.url.toString();
-
-        appSettings.setString(APP_SET_LAST_ROUTE, toState);
-        if (toState === "login" && appSettings.getString(APP_SET_WAS_SUSPENDED)) {
-            this.routerExtensions.navigate([last_route], { clearHistory: true });
+        if (appSettings.getString(APP_SET_TOKEN)) {
+            return true;
+        } else {
+            this.routerExtensions.navigate(["/login"], { clearHistory: true });
+            return false;
         }
-
-        appSettings.remove(APP_SET_WAS_SUSPENDED);
-        return true;
     }
 }

@@ -1,5 +1,60 @@
+.header {
+    width: 100%;
+    background: #e6e6f2;
+    text-align: right;
+}
 .logout-label {
-    color: black;
-    font-size: 25px;
+    color: #091236;
+    font-size: 45px;
+    padding-right: 10px;
+}
+.scroll-view {
+    margin-top: 80px;
+}
+.form-field {
+    margin-bottom: 15px;
+}
+.button {
+    background: #091236;
+    color: white;
+}
+.photo-button {
+    width: 120px;
+    font-size: 30px;
+}
+.photo-item {
+    border-width: 2px;
+    border-color: #091236;
+}
+.photo-header {
+    background: #091236;
+    width: 100%;
+}
+.photo-label {
+    width: 100%;
+    color: white;
+    font-size: 15px;
+    padding-top: 7px;
+    border-width: 2px;
+    border-color: #091236;
+}
+.delete-photo-icon {
+    width: 100%;
+    color: white;
+    font-size: 30px;
+    text-align: right;
+    border-width: 2px;
+    border-color: #091236;
+}
+.on-the-way-labels {
+    margin-top: 15px;
+    text-align: center;
+}
+.location-label {
     padding-right: 20px;
+}
+.on-the-way {
+
+    font-size: 25px;
+    color: #091236;
 }

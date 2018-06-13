@@ -1,76 +1,44 @@
-<ActionBar title="Shipment">
-    <StackLayout orientation="horizontal"
-                 ios:horizontalAlignment="left"
-                 android:horizontalAlignment="left">
-        <Label [text]="Shipment"></Label>
-    </StackLayout>
-    <StackLayout orientation="horizontal"
-                 ios:horizontalAlignment="right"
-                 android:horizontalAlignment="right">
-        <Label class="mdi logout-label" [text]="'mdi-power-settings-new' | fonticon" (tap)="logout()"></Label>
-    </StackLayout>
-</ActionBar>
-<GridLayout>
-    <ScrollView sdkExampleTitle sdkToggleNavButton>
-        <FlexboxLayout class="page" *ngIf="!duringShipment">
-            <StackLayout class="form">
-                <StackLayout class="input-field">
-                    <TextField [(ngModel)]='id_shipment' hint="ID Shipment" ...></TextField>
-                </StackLayout>
-                <StackLayout class="input-field">
-                    <TextField [(ngModel)]='code' hint="Code" ...></TextField>
-                </StackLayout>
-                <Button text="Start this shipment" (tap)="resolveShipment()"></Button>
-            </StackLayout>
+<ScrollView>
+    <StackLayout>
+        <StackLayout class="header">
+            <Label class="mdi logout-label" [text]="'mdi-power-settings-new' | fonticon" (tap)="logout()"></Label>
+        </StackLayout>
+        <!-- Start Shipment -->
+        <StackLayout *ngIf="!duringShipment">
+            <TextField class="form-field" [(ngModel)]='id_shipment' hint="ID Shipment" ...></TextField>
+            <TextField class="form-field" [(ngModel)]='code' hint="Code" ...></TextField>
+            <Button text="Start this shipment" (tap)="resolveShipment()"></Button>
+            <Button class="form-field mdi button photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
+        </StackLayout>
 
+        <!-- On the way Shipment -->
+        <StackLayout *ngIf="duringShipment">
+            <StackLayout class="shipment">
+                <Label class="on-the-way" text="On the way....." ></Label>
 
-            <FlexboxLayout flexDirection="column-reverse">
-                <Button isEnabled="{{canTakePhoto}}" text="Take Photo" class="btn btn-primary btn-active" (tap)="onTakePhoto()" flexGrow="1"></Button>
-            </FlexboxLayout>
-
-
-            <ListView [items]="renderedImages" height="{{heightList}}">
-                <ng-template let-item="item" let-i="index">
-                    <StackLayout>
-                        <Label class="mdi" [text]="'mdi-favorite' | fonticon" (tap)="deletePhoto(index)"></Label>
-                        <Image [src]="item" flexGrow="3" class="p-15 img-rounded"></Image>
-                    </StackLayout>
-                </ng-template>
-            </ListView>
-        </FlexboxLayout>
-
-        <!-- during shipment  -->
-        <FlexboxLayout class="page" *ngIf="duringShipment">
-            <StackLayout class="form">
-                <StackLayout class="input-field">
-                    <TextField [(ngModel)]='code' hint="Code" ...></TextField>
+                <StackLayout class="on-the-way-labels">
+                    <Label class="location-label" [text]='shipment.from.city' ></Label>
+                    <Label class="mdi location-label" [text]="'mdi-arrow-forward' | fonticon" ></Label>
+                    <Label class="location-label" [text]='shipment.to.city' ></Label>
                 </StackLayout>
-                <StackLayout class="input-field">
-                    <Label [text]='shipment.from.city' ></Label>
-                </StackLayout>
-                <StackLayout class="input-field">
-                    <Label [text]='shipment.to.city' ></Label>
-                </StackLayout>
-                <StackLayout class="input-field">
+                <StackLayout class="on-the-way-labels">
                     <Label [text]='shipment.price' ></Label>
+                    <Label text=",-Kč"></Label>
                 </StackLayout>
-                <Button text="Finish this shipment" (tap)="resolveShipment()"></Button>
             </StackLayout>
+            <TextField [(ngModel)]='code' hint="Code" ...></TextField>
+            <Button text="Finish this shipment" (tap)="resolveShipment()"></Button>
+            <Button class="form-field mdi button photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
+        </StackLayout>
 
-
-            <FlexboxLayout flexDirection="column-reverse">
-                <Button isEnabled="{{canTakePhoto}}" text="Take Photo" class="btn btn-primary btn-active" (tap)="onTakePhoto()" flexGrow="1"></Button>
-            </FlexboxLayout>
-
-
-            <ListView [items]="renderedImages" height="{{heightList}}">
-                <ng-template let-item="item" let-i="index">
-                    <StackLayout>
-                        <Label class="mdi" [text]="'mdi-favorite' | fonticon" (tap)="deletePhoto(index)"></Label>
-                        <Image [src]="item" flexGrow="3" class="p-15 img-rounded"></Image>
-                    </StackLayout>
-                </ng-template>
-            </ListView>
-        </FlexboxLayout>
-    </ScrollView>
-</GridLayout>
+        <StackLayout *ngFor="let photo of photos let i = index" class="list-group-item">
+            <StackLayout class="photo-item">
+                <FlexboxLayout class="photo-header">
+                    <Label class="photo-label" [text]="'Photo ' + (i+1)" ></Label>
+                    <Label class="mdi delete-photo-icon" [text]="'mdi-delete' | fonticon" (tap)="deletePhoto(photo.ID)"></Label>
+                </FlexboxLayout>
+                <Image [src]="photo.source"></Image>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>
