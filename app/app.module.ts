@@ -10,6 +10,7 @@ import { LoginComponent } from "./components/login/login";
 import { ShipmentComponent } from "./components/shipment/shipment";
 import { BlankComponent } from "./components/blank";
 import { AuthGuard } from "~/authGuard";
+import {LoaderService} from "~/services/loader.service";
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AuthGuard } from "~/authGuard";
         BlankComponent
     ],
     providers: [
-        AuthGuard
+        AuthGuard,
+        LoaderService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

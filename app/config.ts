@@ -5,7 +5,6 @@ import * as appSettings from "application-settings";
 export const API_URL = "http://www.nohe.cz/api/";
 export const APP_SET_TOKEN = "token";
 export const APP_SET_GPS_ACTIVE = "gps_active";
-export const APP_SET_GPS_ROUTE = "gps_route";
 export const SEND_GPS_IN_MILISECONDS = 8000;
 
 export function getUnauthorizedHeaders(): HttpHeaders{

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import * as appSettings from "application-settings";
 import {RouterExtensions} from "nativescript-angular";
@@ -6,6 +6,7 @@ import {platformNames} from "platform";
 import {device} from "platform";
 import {User} from "~/models/User";
 import {API_URL, APP_SET_TOKEN, getUnauthorizedHeaders} from "../config";
+import {LoaderService} from "~/services/loader.service";
 
 interface LoginResponse {
     Token: string;
@@ -20,7 +21,7 @@ interface LoginResponse {
 export class LoginService {
     private user: User;
     private _isLogged: boolean = false;
-    constructor(private http: HttpClient, private routerExtensions: RouterExtensions) { }
+    constructor(private http: HttpClient, private routerExtensions: RouterExtensions, @Inject(LoaderService) private loader) { }
 
     public getUser(): User {
         return this.user;
@@ -34,6 +35,7 @@ export class LoginService {
         let body = new HttpParams();
         let nativePlatformLocalhost;
 
+        this.loader.show();
         appSettings.clear();
         body = body.set('Username', username);
         body = body.set('Password', password);
@@ -59,9 +61,11 @@ export class LoginService {
                 role: dataResponse.User.role
             });
             this._isLogged = true;
+            this.loader.hide();
             this.routerExtensions.navigate(["/shipment"], { clearHistory: true });
         }, () => {
             this.routerExtensions.navigate(["/login"], { clearHistory: true });
+            this.loader.hide();
             alert("Wrong username or password");
         });
     };

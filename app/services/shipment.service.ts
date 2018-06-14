@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {API_URL, getAuthorizedHeaders} from "~/config";
-import {ShipmentComponent} from "~/components/shipment/shipment";
 import {RouterExtensions} from "nativescript-angular";
 
 @Injectable()
@@ -18,7 +17,6 @@ export class ShipmentService {
         });
 
         this.http.post(API_URL + "shipment/code", body, {headers: getAuthorizedHeaders()}).subscribe((data) => {
-            ShipmentComponent.removeUnUsedAppSettings();
             this.routerExtensions.navigate(["/blank"], {clearHistory: true});
             alert("Shipment was changed");
         }, (error) => {

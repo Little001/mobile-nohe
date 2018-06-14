@@ -3,13 +3,10 @@ import {RouterExtensions} from "nativescript-angular";
 import { ShipmentService } from "../../services/shipment.service";
 import * as imageSourceModule  from "tns-core-modules/image-source";
 import { takePicture } from "nativescript-camera";
-import { getCurrentLocation, isEnabled } from "nativescript-geolocation";
-import * as appSettings from "application-settings";
+import {clearWatch, watchLocation} from "nativescript-geolocation";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 import {ImageSource } from "tns-core-modules/image-source";
 import { Page } from "ui/page";
-import { APP_SET_GPS_ACTIVE, APP_SET_GPS_ROUTE, SEND_GPS_IN_MILISECONDS } from "../../config";
-import {Accuracy} from "tns-core-modules/ui/enums";
 import {LoginService} from "~/services/login.service";
 import {Photo} from "~/components/shipment/photo";
 
@@ -38,6 +35,7 @@ export class ShipmentComponent implements OnInit {
     public widthPhoto: number = 300;
     public heightPhoto: number = 300;
     public shipment: Shipment;
+    private watchId: number;
     private source: ImageSource;
 
     constructor(private _page: Page, private fonticon: TNSFontIconService, private loginService: LoginService,
@@ -47,15 +45,13 @@ export class ShipmentComponent implements OnInit {
 
         this.shipmentService.getCurrentlyShipment().subscribe((shipment: Shipment) => {
             if (shipment) {
-                ShipmentComponent.stopGps(() => {
-                    this.startGps();
-                });
+                this.startWatchLocation();
                 this.duringShipment = true;
                 this.shipment = shipment;
                 this.id_shipment = shipment.ID.toString();
             } else {
                 this.duringShipment = false;
-                ShipmentComponent.stopGps();
+                this.stopWatchLocation();
             }
         }, (error) => {
             alert(error);
@@ -66,46 +62,28 @@ export class ShipmentComponent implements OnInit {
         this._page.actionBarHidden = true;
     }
 
-    private startGps() {
-        if (!appSettings.getString(APP_SET_GPS_ACTIVE)) {
-            this.stalking();
-            appSettings.setString(APP_SET_GPS_ACTIVE, "active");
-        }
-    }
-
-    private stalking() {
-        let interval = setInterval(() =>{
-            isEnabled().then(() => {
-                getCurrentLocation({ desiredAccuracy: Accuracy.high, maximumAge: 5000, timeout: 500 }).then((value) => {
-                    let appRoute = appSettings.getString(APP_SET_GPS_ROUTE);
-                    let routeFromAppSettings = appRoute ? appRoute + "|" : "";
-                    let route = routeFromAppSettings + value.latitude + "," + value.longitude;
+    private startWatchLocation() {
+        this.watchId = watchLocation(
+            function (loc) {
+                if (loc) {
+                    let route = loc.latitude + "," + loc.longitude;
 
                     this.shipmentService.postGps(this.shipment.ID.toString(), route).subscribe(() => {
-                        appSettings.setString(APP_SET_GPS_ROUTE, "");
                     }, (error) => {
-                        let appRoute = appSettings.getString(APP_SET_GPS_ROUTE);
-                        appSettings.setString(APP_SET_GPS_ROUTE, appRoute + "|" + route);
-                        console.log("fail postGps -> " + error);
                     });
-                }, (error) => {
-                    console.log("get current location -> " + error);
-                });
-            });
-
-            if (!appSettings.getString(APP_SET_GPS_ACTIVE)) {
-                clearInterval(interval);
-            }
-        }, SEND_GPS_IN_MILISECONDS);
+                }
+            },
+            function(e){
+                console.log("Error: " + e.message);
+            },
+            {desiredAccuracy: 3, updateDistance: 10, minimumUpdateTime : 1000 * 3}); // Should update every 20 seconds according to Googe documentation. Not verified.
     }
 
-    private static stopGps(afterStopGpsCallback?: () => void) {
-        appSettings.remove(APP_SET_GPS_ACTIVE);
-        setTimeout(() => {
-            if (afterStopGpsCallback) {
-                afterStopGpsCallback();
-            }
-        }, SEND_GPS_IN_MILISECONDS + 500);
+
+    private stopWatchLocation() {
+        if (this.watchId) {
+            clearWatch(this.watchId);
+        }
     }
 
     public resolveShipment(): void {
@@ -114,7 +92,7 @@ export class ShipmentComponent implements OnInit {
         }
         let photosInBase64 = [];
         for (let i = 0; i < this.photos.length; i++) {
-            photosInBase64.push(this.photos[i].inBase64);
+            photosInBase64.push(this.photos[i].source.toBase64String("jpg"));
         }
         this.shipmentService.postCode(this.id_shipment, this.code, photosInBase64);
     }
@@ -141,7 +119,6 @@ export class ShipmentComponent implements OnInit {
                     let photo = new Photo();
                     photo.ID = this.idPhoto;
                     photo.source = imageSource;
-                    photo.inBase64 = imageSource.toBase64String("jpg");
                     this.idPhoto++;
                     this.photos.push(photo);
                     this.afterChangePhotos();
@@ -169,9 +146,5 @@ export class ShipmentComponent implements OnInit {
 
     private afterChangePhotos() {
         this.canTakePhoto = this.photos.length < 4;
-    }
-
-    public static removeUnUsedAppSettings() {
-        appSettings.remove(APP_SET_GPS_ROUTE);
     }
 }
