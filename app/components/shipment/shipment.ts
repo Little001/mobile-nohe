@@ -9,6 +9,7 @@ import {ImageSource } from "tns-core-modules/image-source";
 import { Page } from "ui/page";
 import {LoginService} from "~/services/login.service";
 import {Photo} from "~/components/shipment/photo";
+import * as dialogs from "ui/dialogs";
 
 interface Shipment {
     ID: number,
@@ -63,20 +64,18 @@ export class ShipmentComponent implements OnInit {
     }
 
     private startWatchLocation() {
-        this.watchId = watchLocation(
-            function (loc) {
-                if (loc) {
-                    let route = loc.latitude + "," + loc.longitude;
-
-                    this.shipmentService.postGps(this.shipment.ID.toString(), route).subscribe(() => {
-                    }, (error) => {
-                    });
-                }
-            },
-            function(e){
-                console.log("Error: " + e.message);
-            },
-            {desiredAccuracy: 3, updateDistance: 10, minimumUpdateTime : 1000 * 3}); // Should update every 20 seconds according to Googe documentation. Not verified.
+        this.watchId = watchLocation((loc) =>{
+            if (loc) {
+                let route = loc.latitude + "," + loc.longitude;
+                console.log(route);
+                this.shipmentService.postGps(this.shipment.ID.toString(), route).subscribe(() => {
+                }, (error) => {
+                });
+            }
+        },(e) => {
+            console.log("Error: " + e.message);
+        },
+        {desiredAccuracy: 3, updateDistance: 10, minimumUpdateTime : 1000 * 3}); // Should update every 20 seconds according to Googe documentation. Not verified.
     }
 
 
@@ -84,6 +83,18 @@ export class ShipmentComponent implements OnInit {
         if (this.watchId) {
             clearWatch(this.watchId);
         }
+    }
+
+    public onPhotoContextMenu(index: number) {
+        dialogs.confirm({
+            title: "Do you want to delete a photo?",
+            okButtonText: "Yes",
+            cancelButtonText: "No"
+        }).then(result => {
+            if (result) {
+                this.deletePhoto(index);
+            }
+        });
     }
 
     public resolveShipment(): void {
@@ -97,7 +108,7 @@ export class ShipmentComponent implements OnInit {
         this.shipmentService.postCode(this.id_shipment, this.code, photosInBase64);
     }
 
-    public deletePhoto(id: number): void {
+    private deletePhoto(id: number): void {
         this.photos = this.photos.filter(photo => photo.ID !== id);
     }
 
@@ -145,6 +156,6 @@ export class ShipmentComponent implements OnInit {
     }
 
     private afterChangePhotos() {
-        this.canTakePhoto = this.photos.length < 4;
+        this.canTakePhoto = this.photos.length < 7;
     }
 }

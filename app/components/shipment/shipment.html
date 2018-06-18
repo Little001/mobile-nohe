@@ -8,7 +8,6 @@
             <TextField class="form-field" [(ngModel)]='id_shipment' hint="ID Shipment" ...></TextField>
             <TextField class="form-field" [(ngModel)]='code' hint="Code" ...></TextField>
             <Button text="Start this shipment" (tap)="resolveShipment()"></Button>
-            <Button class="form-field mdi button photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
         </StackLayout>
 
         <!-- On the way Shipment -->
@@ -28,17 +27,14 @@
             </StackLayout>
             <TextField [(ngModel)]='code' hint="Code" ...></TextField>
             <Button text="Finish this shipment" (tap)="resolveShipment()"></Button>
+        </StackLayout>
+        <WrapLayout orientation="horizontal" class="photo-list">
             <Button class="form-field mdi button photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
-        </StackLayout>
-
-        <StackLayout *ngFor="let photo of photos let i = index" class="list-group-item">
-            <StackLayout class="photo-item">
-                <FlexboxLayout class="photo-header">
-                    <Label class="photo-label" [text]="'Photo ' + (i+1)" ></Label>
-                    <Label class="mdi delete-photo-icon" [text]="'mdi-delete' | fonticon" (tap)="deletePhoto(photo.ID)"></Label>
-                </FlexboxLayout>
-                <Image [src]="photo.source"></Image>
+            <StackLayout *ngFor="let photo of photos let i = index">
+                <GridLayout class="photo-item" (longPress)="onPhotoContextMenu(i)">
+                    <Image [src]="photo.source"></Image>
+                </GridLayout >
             </StackLayout>
-        </StackLayout>
+        </WrapLayout>
     </StackLayout>
 </ScrollView>
