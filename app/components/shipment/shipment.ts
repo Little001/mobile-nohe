@@ -102,6 +102,7 @@ export class ShipmentComponent implements OnInit {
     }
 
     public resolveShipment(): void {
+        this.loader.show();
         if (!this.inputsAreValid()) {
             return;
         }
@@ -109,7 +110,16 @@ export class ShipmentComponent implements OnInit {
         for (let i = 0; i < this.photos.length; i++) {
             photosInBase64.push(this.photos[i].source.toBase64String("jpg"));
         }
-        this.shipmentService.postCode(this.id_shipment, this.code, photosInBase64);
+
+        this.shipmentService.postCode(this.id_shipment, this.code, photosInBase64).subscribe((data) => {
+            this.stopWatchLocation();
+            this.loader.hide();
+            this.routerExtensions.navigate(["/blank"], {clearHistory: true});
+            alert("Stav jízdy byl změněn");
+        }, (error) => {
+            this.loader.hide();
+            alert("Špatně zadané informace");
+        });
     }
 
     private deletePhoto(id: number): void {

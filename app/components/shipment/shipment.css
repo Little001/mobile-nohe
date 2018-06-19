@@ -20,17 +20,17 @@
 }
 .photo-list {
     width: 100%;
-    height: 240px;
+    height: 500px;
 }
 .photo-button {
-    width: 123px;
+    width: 30%;
     height: 110px;
     font-size: 30px;
     margin-left: 5px;
 }
 .photo-item {
     margin-left: 10px;
-    width: 120px;
+    width: 30%;
     height: 120px;
 }
 .on-the-way-labels {

@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b059800-a082-4767-8cec-3d5b38357308" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.css" afterPath="$PROJECT_DIR$/app/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/login/loginView.html" afterPath="$PROJECT_DIR$/app/components/login/loginView.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/shipment/shipment.css" afterPath="$PROJECT_DIR$/app/components/shipment/shipment.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/shipment/shipment.html" afterPath="$PROJECT_DIR$/app/components/shipment/shipment.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/shipment/shipment.ts" afterPath="$PROJECT_DIR$/app/components/shipment/shipment.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/loader.service.ts" afterPath="$PROJECT_DIR$/app/services/loader.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/login.service.ts" afterPath="$PROJECT_DIR$/app/services/login.service.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/shipment.service.ts" afterPath="$PROJECT_DIR$/app/services/shipment.service.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shipment.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shipment.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="51" column="41" lean-forward="true" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
+            <state relative-caret-position="359">
+              <caret line="117" column="77" lean-forward="false" selection-start-line="117" selection-start-column="77" selection-end-line="117" selection-end-column="77" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -58,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shipment.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="shipment.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="24" column="15" lean-forward="false" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
+            <state relative-caret-position="291">
+              <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -103,8 +96,8 @@
       <file leaf-file-name="shipment.service.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/services/shipment.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="45" />
+            <state relative-caret-position="215">
+              <caret line="10" column="72" lean-forward="false" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -228,10 +221,10 @@
         <option value="$PROJECT_DIR$/app/components/login/loginView.html" />
         <option value="$PROJECT_DIR$/app/services/loader.service.ts" />
         <option value="$PROJECT_DIR$/app/components/shipment/shipment.html" />
-        <option value="$PROJECT_DIR$/app/components/shipment/shipment.css" />
         <option value="$PROJECT_DIR$/app/services/login.service.ts" />
-        <option value="$PROJECT_DIR$/app/services/shipment.service.ts" />
         <option value="$PROJECT_DIR$/app/components/shipment/shipment.ts" />
+        <option value="$PROJECT_DIR$/app/services/shipment.service.ts" />
+        <option value="$PROJECT_DIR$/app/components/shipment/shipment.css" />
       </list>
     </option>
   </component>
@@ -846,7 +839,7 @@
       <workItem from="1528719508819" duration="81049000" />
       <workItem from="1529163135317" duration="1385000" />
       <workItem from="1529328387799" duration="5077000" />
-      <workItem from="1529403396831" duration="7778000" />
+      <workItem from="1529403396831" duration="9720000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1526677766014</created>
@@ -918,11 +911,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529331792240</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="loadery vsude kde je potreba, přelození do cestiny, stylovaní">
+      <created>1529417277966</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1529417277966</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209296000" />
+    <option name="totallyTimeSpent" value="211238000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1001,7 +1001,8 @@
     <MESSAGE value="opraveni padající appky + refactor" />
     <MESSAGE value="refactor + loader" />
     <MESSAGE value="list view for photos" />
-    <option name="LAST_COMMIT_MESSAGE" value="list view for photos" />
+    <MESSAGE value="loadery vsude kde je potreba, přelození do cestiny, stylovaní" />
+    <option name="LAST_COMMIT_MESSAGE" value="loadery vsude kde je potreba, přelození do cestiny, stylovaní" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1296,6 +1297,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/login.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="68" column="12" lean-forward="false" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/shipment.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="10" column="72" lean-forward="false" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="117" column="77" lean-forward="false" selection-start-line="117" selection-start-column="77" selection-end-line="117" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -1306,37 +1335,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="24" column="15" lean-forward="false" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
+        <state relative-caret-position="291">
+          <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/shipment.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/login.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="68" column="12" lean-forward="false" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="51" column="41" lean-forward="true" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
