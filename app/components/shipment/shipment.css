@@ -23,13 +23,13 @@
     height: 240px;
 }
 .photo-button {
-    width: 120px;
-    height: 120px;
+    width: 123px;
+    height: 110px;
     font-size: 30px;
+    margin-left: 5px;
 }
 .photo-item {
-    padding-left: 2px;
-    padding-right: 2px;
+    margin-left: 10px;
     width: 120px;
     height: 120px;
 }

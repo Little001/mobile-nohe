@@ -3,38 +3,40 @@
         <StackLayout class="header">
             <Label class="mdi logout-label" [text]="'mdi-power-settings-new' | fonticon" (tap)="logout()"></Label>
         </StackLayout>
-        <!-- Start Shipment -->
-        <StackLayout *ngIf="!duringShipment">
-            <TextField class="form-field" [(ngModel)]='id_shipment' hint="ID Shipment" ...></TextField>
-            <TextField class="form-field" [(ngModel)]='code' hint="Code" ...></TextField>
-            <Button text="Start this shipment" (tap)="resolveShipment()"></Button>
-        </StackLayout>
-
-        <!-- On the way Shipment -->
-        <StackLayout *ngIf="duringShipment">
-            <StackLayout class="shipment">
-                <Label class="on-the-way" text="On the way....." ></Label>
-
-                <StackLayout class="on-the-way-labels">
-                    <Label class="location-label" [text]='shipment.from.city' ></Label>
-                    <Label class="mdi location-label" [text]="'mdi-arrow-forward' | fonticon" ></Label>
-                    <Label class="location-label" [text]='shipment.to.city' ></Label>
-                </StackLayout>
-                <StackLayout class="on-the-way-labels">
-                    <Label [text]='shipment.price' ></Label>
-                    <Label text=",-Kč"></Label>
-                </StackLayout>
+        <StackLayout class="page">
+            <!-- Start Shipment -->
+            <StackLayout *ngIf="!duringShipment">
+                <TextField class="form-field app-field" [(ngModel)]='id_shipment' hint="Číslo jízdy" ...></TextField>
+                <TextField class="form-field app-field" [(ngModel)]='code' hint="Kód" ...></TextField>
+                <Button text="Spustit jízdu" (tap)="resolveShipment()"></Button>
             </StackLayout>
-            <TextField [(ngModel)]='code' hint="Code" ...></TextField>
-            <Button text="Finish this shipment" (tap)="resolveShipment()"></Button>
-        </StackLayout>
-        <WrapLayout orientation="horizontal" class="photo-list">
-            <Button class="form-field mdi button photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
-            <StackLayout *ngFor="let photo of photos let i = index">
-                <GridLayout class="photo-item" (longPress)="onPhotoContextMenu(i)">
-                    <Image [src]="photo.source"></Image>
-                </GridLayout >
+
+            <!-- On the way Shipment -->
+            <StackLayout *ngIf="duringShipment">
+                <StackLayout class="shipment">
+                    <Label class="on-the-way" text="Právě probíhá jízda..." ></Label>
+
+                    <StackLayout class="on-the-way-labels">
+                        <Label class="location-label" [text]='shipment.from.city' ></Label>
+                        <Label class="mdi location-label" [text]="'mdi-arrow-forward' | fonticon" ></Label>
+                        <Label class="location-label" [text]='shipment.to.city' ></Label>
+                    </StackLayout>
+                    <StackLayout class="on-the-way-labels">
+                        <Label [text]='shipment.price' ></Label>
+                        <Label text=",-Kč"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <TextField class="app-field" [(ngModel)]='code' hint="Kód" ...></TextField>
+                <Button text="Ukončit jízdu" (tap)="resolveShipment()"></Button>
             </StackLayout>
-        </WrapLayout>
+            <WrapLayout orientation="horizontal" class="photo-list">
+                <Button class="mdi photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
+                <StackLayout *ngFor="let photo of photos let i = index">
+                    <GridLayout class="photo-item" (longPress)="onPhotoContextMenu(i)">
+                        <Image [src]="photo.source"></Image>
+                    </GridLayout >
+                </StackLayout>
+            </WrapLayout>
+        </StackLayout>
     </StackLayout>
 </ScrollView>

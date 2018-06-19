@@ -63,16 +63,16 @@ export class LoginService {
             this._isLogged = true;
             this.loader.hide();
             this.routerExtensions.navigate(["/shipment"], { clearHistory: true });
-        }, () => {
+        }, (error) => {
             this.routerExtensions.navigate(["/login"], { clearHistory: true });
             this.loader.hide();
-            alert("Wrong username or password");
+            alert("Špatné přihlašovací jméno nebo heslo");
         });
     };
 
     public logout() {
         let nativePlatformLocalhost;
-
+        this.loader.show();
         /*in some function or globally*/
         if(device.os === platformNames.ios){
             /*localhost for ios*/
@@ -87,6 +87,7 @@ export class LoginService {
         this.http.post(API_URL + "logout", null, { headers: getUnauthorizedHeaders() }).subscribe((data) => {
             this._isLogged = false;
             appSettings.clear();
+            this.loader.hide();
             this.routerExtensions.navigate(["/login"], { clearHistory: true });
         }, () => {
         });

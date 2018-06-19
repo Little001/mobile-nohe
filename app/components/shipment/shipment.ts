@@ -10,6 +10,7 @@ import { Page } from "ui/page";
 import {LoginService} from "~/services/login.service";
 import {Photo} from "~/components/shipment/photo";
 import * as dialogs from "ui/dialogs";
+import {LoaderService} from "~/services/loader.service";
 
 interface Shipment {
     ID: number,
@@ -23,7 +24,7 @@ interface Shipment {
     moduleId: module.id,
     templateUrl: "./shipment.html",
     styleUrls: ["./shipment.css"],
-    providers: [ ShipmentService, LoginService ]
+    providers: [ ShipmentService, LoginService, LoaderService]
 })
 
 export class ShipmentComponent implements OnInit {
@@ -40,10 +41,10 @@ export class ShipmentComponent implements OnInit {
     private source: ImageSource;
 
     constructor(private _page: Page, private fonticon: TNSFontIconService, private loginService: LoginService,
-                private shipmentService: ShipmentService, private routerExtensions: RouterExtensions) {
+                private shipmentService: ShipmentService, private routerExtensions: RouterExtensions, private loader: LoaderService) {
         this.photos = [];
         this.source = new imageSourceModule.ImageSource();
-
+        this.loader.show();
         this.shipmentService.getCurrentlyShipment().subscribe((shipment: Shipment) => {
             if (shipment) {
                 this.startWatchLocation();
@@ -54,8 +55,10 @@ export class ShipmentComponent implements OnInit {
                 this.duringShipment = false;
                 this.stopWatchLocation();
             }
+            this.loader.hide();
         }, (error) => {
             alert(error);
+            this.loader.hide();
         });
     }
 
@@ -70,6 +73,7 @@ export class ShipmentComponent implements OnInit {
                 console.log(route);
                 this.shipmentService.postGps(this.shipment.ID.toString(), route).subscribe(() => {
                 }, (error) => {
+                    console.log(error);
                 });
             }
         },(e) => {
@@ -87,9 +91,9 @@ export class ShipmentComponent implements OnInit {
 
     public onPhotoContextMenu(index: number) {
         dialogs.confirm({
-            title: "Do you want to delete a photo?",
-            okButtonText: "Yes",
-            cancelButtonText: "No"
+            title: "Chcete smazat tuto fotku?",
+            okButtonText: "Ano",
+            cancelButtonText: "Ne"
         }).then(result => {
             if (result) {
                 this.deletePhoto(index);
@@ -141,21 +145,29 @@ export class ShipmentComponent implements OnInit {
 
     private inputsAreValid(): boolean {
         if (this.photos.length < 1) {
-            alert("You need min 1 photo");
+            this.invalidInputs("Minimální počet fotek je 1");
             return false;
         }
         if (!this.id_shipment) {
-            alert("ID Shipment is required");
+            this.invalidInputs("Nezadal jste číslo jízdy");
             return false;
         }
         if (!this.code) {
-            alert("Code is required");
+            this.invalidInputs("Nezadal jste kód");
             return false;
         }
         return true;
     }
 
     private afterChangePhotos() {
-        this.canTakePhoto = this.photos.length < 7;
+        this.canTakePhoto = this.photos.length < 5;
+    }
+
+    private invalidInputs(message: string): void {
+        dialogs.alert({
+            title: "Nevalidní vstupy",
+            message: message
+        }).then(() => {
+        });
     }
 }

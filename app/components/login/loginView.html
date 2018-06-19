@@ -2,13 +2,13 @@
     <StackLayout class="form">
         <Image  class="logo" src="~/images/logo.png"></Image>
         <StackLayout class="inputs">
-            <StackLayout class="input-field">
-                <TextField [(ngModel)]='userName' hint="UserName" ...></TextField>
+            <StackLayout class="app-field">
+                <TextField [(ngModel)]='userName' hint="Uživatelské jméno" ...></TextField>
             </StackLayout>
-            <StackLayout class="input-field">
-                <TextField [(ngModel)]='passWord' hint="Password" ... secure="true"></TextField>
+            <StackLayout class="app-field">
+                <TextField [(ngModel)]='passWord' hint="Heslo" ... secure="true"></TextField>
             </StackLayout>
         </StackLayout>
-        <Button text="Log In" (tap)="submit()"></Button>
+        <Button text="Přihlásit se" (tap)="submit()"></Button>
     </StackLayout>
 </FlexboxLayout>

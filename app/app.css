@@ -14,12 +14,16 @@ refer to http://docs.nativescript.org/ui/theme.
 .page {
     align-items: center;
     flex-direction: column;
-}
-.form {
     margin-left: 30;
     margin-right: 30;
+}
+.form {
     flex-grow: 2;
     vertical-align: middle;
+}
+
+.app-field {
+    margin-top: 20px;
 }
 
 .mdi {
