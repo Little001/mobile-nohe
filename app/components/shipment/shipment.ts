@@ -3,14 +3,16 @@ import {RouterExtensions} from "nativescript-angular";
 import { ShipmentService } from "../../services/shipment.service";
 import * as imageSourceModule  from "tns-core-modules/image-source";
 import { takePicture } from "nativescript-camera";
-import {clearWatch, watchLocation} from "nativescript-geolocation";
+import { getCurrentLocation } from "nativescript-geolocation";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 import {ImageSource } from "tns-core-modules/image-source";
 import { Page } from "ui/page";
 import {LoginService} from "~/services/login.service";
 import {Photo} from "~/components/shipment/photo";
 import * as dialogs from "ui/dialogs";
+import * as appSettings from "application-settings";
 import {LoaderService} from "~/services/loader.service";
+import {APP_SET_GPS_ACTIVE, GPS_DELAY_IN_MILISECONDS} from "~/config";
 
 interface Shipment {
     ID: number,
@@ -28,6 +30,7 @@ interface Shipment {
 })
 
 export class ShipmentComponent implements OnInit {
+    public page_label = "";
     public id_shipment = "";
     public code = "";
     public canTakePhoto = true;
@@ -37,28 +40,29 @@ export class ShipmentComponent implements OnInit {
     public widthPhoto: number = 300;
     public heightPhoto: number = 300;
     public shipment: Shipment;
-    private watchId: number;
     private source: ImageSource;
 
     constructor(private _page: Page, private fonticon: TNSFontIconService, private loginService: LoginService,
                 private shipmentService: ShipmentService, private routerExtensions: RouterExtensions, private loader: LoaderService) {
         this.photos = [];
         this.source = new imageSourceModule.ImageSource();
+        this.page_label = "Start jízdy";
+        ShipmentComponent.stopWatchLocation();
         this.loader.show();
         this.shipmentService.getCurrentlyShipment().subscribe((shipment: Shipment) => {
             if (shipment) {
-                this.startWatchLocation();
+                this.page_label = "Probíhající jízda...";
                 this.duringShipment = true;
                 this.shipment = shipment;
                 this.id_shipment = shipment.ID.toString();
+                this.startWatchLocation();
             } else {
                 this.duringShipment = false;
-                this.stopWatchLocation();
             }
             this.loader.hide();
         }, (error) => {
-            alert(error);
             this.loader.hide();
+            this.routerExtensions.navigate(["/blank"], {clearHistory: true});
         });
     }
 
@@ -66,27 +70,37 @@ export class ShipmentComponent implements OnInit {
         this._page.actionBarHidden = true;
     }
 
-    private startWatchLocation() {
-        this.watchId = watchLocation((loc) =>{
-            if (loc) {
+    private gettingLocation() {
+        let interval = setInterval(() => {
+            if (!appSettings.getString(APP_SET_GPS_ACTIVE)) {
+                clearInterval(interval);
+                return;
+            }
+            getCurrentLocation({desiredAccuracy: 3, updateDistance: 10, maximumAge: 20000, timeout: 20000}).
+            then((loc) => {
                 let route = loc.latitude + "," + loc.longitude;
                 console.log(route);
                 this.shipmentService.postGps(this.shipment.ID.toString(), route).subscribe(() => {
                 }, (error) => {
                     console.log(error);
                 });
-            }
-        },(e) => {
-            console.log("Error: " + e.message);
-        },
-        {desiredAccuracy: 3, updateDistance: 10, minimumUpdateTime : 1000 * 3}); // Should update every 20 seconds according to Googe documentation. Not verified.
+            }, (e) => {
+                console.log("Error watch location: " + e.message);
+            });
+        }, GPS_DELAY_IN_MILISECONDS);
     }
 
+    private static stopWatchLocation() {
+        appSettings.remove(APP_SET_GPS_ACTIVE);
+    }
 
-    private stopWatchLocation() {
-        if (this.watchId) {
-            clearWatch(this.watchId);
-        }
+    private startWatchLocation() {
+        ShipmentComponent.stopWatchLocation();
+        setTimeout(() => {
+            appSettings.setString(APP_SET_GPS_ACTIVE, "active");
+            this.gettingLocation();
+        }, GPS_DELAY_IN_MILISECONDS + 1000);
+
     }
 
     public onPhotoContextMenu(index: number) {
@@ -102,17 +116,17 @@ export class ShipmentComponent implements OnInit {
     }
 
     public resolveShipment(): void {
-        this.loader.show();
         if (!this.inputsAreValid()) {
             return;
         }
+        this.loader.show();
         let photosInBase64 = [];
         for (let i = 0; i < this.photos.length; i++) {
             photosInBase64.push(this.photos[i].source.toBase64String("jpg"));
         }
 
         this.shipmentService.postCode(this.id_shipment, this.code, photosInBase64).subscribe((data) => {
-            this.stopWatchLocation();
+            ShipmentComponent.stopWatchLocation();
             this.loader.hide();
             this.routerExtensions.navigate(["/blank"], {clearHistory: true});
             alert("Stav jízdy byl změněn");
@@ -124,6 +138,7 @@ export class ShipmentComponent implements OnInit {
 
     private deletePhoto(id: number): void {
         this.photos = this.photos.filter(photo => photo.ID !== id);
+        this.afterChangePhotos();
     }
 
     public logout() {

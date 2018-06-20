@@ -1,7 +1,15 @@
 .header {
     width: 100%;
     background: #e6e6f2;
-    text-align: right;
+}
+.header-label {
+    width: 80%;
+    color: #091236;
+    font-size: 25px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.header-logout {
 }
 .logout-label {
     color: #091236;
@@ -35,13 +43,22 @@
 }
 .on-the-way-labels {
     margin-top: 15px;
-    text-align: center;
+}
+.h2 {
+    font-size: 20px;
+    margin-top: 15px;
+    padding-bottom: 4px;
+    text-decoration: underline;
 }
 .location-label {
+    color: black;
+    font-size: 15px;
     padding-right: 20px;
 }
-.on-the-way {
-
-    font-size: 25px;
-    color: #091236;
+.price-wrapper {
+    margin-top: 20px;
+    color: red;
+}
+.price {
+    font-weight: bold;
 }

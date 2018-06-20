@@ -1,8 +1,13 @@
 <ScrollView>
     <StackLayout>
-        <StackLayout class="header">
-            <Label class="mdi logout-label" [text]="'mdi-power-settings-new' | fonticon" (tap)="logout()"></Label>
-        </StackLayout>
+        <WrapLayout orientation="horizontal" class="header">
+            <StackLayout class="header-label">
+                <Label [text]='page_label'></Label>
+            </StackLayout>
+            <StackLayout class="header-logout">
+                <Label class="mdi logout-label" [text]="'mdi-power-settings-new' | fonticon" (tap)="logout()"></Label>
+            </StackLayout>
+        </WrapLayout>
         <StackLayout class="page">
             <!-- Start Shipment -->
             <StackLayout *ngIf="!duringShipment">
@@ -14,16 +19,24 @@
             <!-- On the way Shipment -->
             <StackLayout *ngIf="duringShipment">
                 <StackLayout class="shipment">
-                    <Label class="on-the-way" text="Právě probíhá jízda..." ></Label>
-
                     <StackLayout class="on-the-way-labels">
-                        <Label class="location-label" [text]='shipment.from.city' ></Label>
-                        <Label class="mdi location-label" [text]="'mdi-arrow-forward' | fonticon" ></Label>
-                        <Label class="location-label" [text]='shipment.to.city' ></Label>
+                        <Label class="h2" text="Odkud: "></Label>
+                        <WrapLayout orientation="horizontal">
+                            <Label class="location-label" [text]='shipment.from.city' ></Label>
+                            <Label class="location-label" [text]='shipment.from.street' ></Label>
+                        </WrapLayout>
+                        <Label class="h2" text="Kam: "></Label>
+                        <WrapLayout orientation="horizontal">
+                            <Label class="location-label" [text]='shipment.to.city' ></Label>
+                            <Label class="location-label" [text]='shipment.to.street' ></Label>
+                        </WrapLayout>
                     </StackLayout>
-                    <StackLayout class="on-the-way-labels">
-                        <Label [text]='shipment.price' ></Label>
-                        <Label text=",-Kč"></Label>
+                    <StackLayout class="price-wrapper">
+                        <WrapLayout orientation="horizontal">
+                            <Label text="Cena: "></Label>
+                            <Label class="price" [text]='shipment.price' ></Label>
+                            <Label class="price" text=",-Kč"></Label>
+                        </WrapLayout>
                     </StackLayout>
                 </StackLayout>
                 <TextField class="app-field" [(ngModel)]='code' hint="Kód" ...></TextField>
@@ -31,8 +44,8 @@
             </StackLayout>
             <WrapLayout orientation="horizontal" class="photo-list">
                 <Button class="mdi photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
-                <StackLayout *ngFor="let photo of photos let i = index">
-                    <GridLayout class="photo-item" (longPress)="onPhotoContextMenu(i)">
+                <StackLayout *ngFor="let photo of photos">
+                    <GridLayout class="photo-item" (longPress)="onPhotoContextMenu(photo.ID)">
                         <Image [src]="photo.source"></Image>
                     </GridLayout >
                 </StackLayout>
