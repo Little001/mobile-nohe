@@ -90,6 +90,7 @@ export class LoginService {
             this.loader.hide();
             this.routerExtensions.navigate(["/login"], { clearHistory: true });
         }, () => {
+            this.routerExtensions.navigate(["/login"], { clearHistory: true });
         });
     };
 }
