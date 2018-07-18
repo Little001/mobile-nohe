@@ -11,6 +11,8 @@ import { ShipmentComponent } from "./components/shipment/shipment";
 import { BlankComponent } from "./components/blank";
 import { AuthGuard } from "~/authGuard";
 import {LoaderService} from "~/services/loader.service";
+import {NativeScriptUISideDrawerModule} from "nativescript-ui-sidedrawer/angular";
+import {LoginService} from "~/services/login.service";
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import {LoaderService} from "~/services/loader.service";
         AppRoutingModule,
         NativeScriptFormsModule,
         NativeScriptHttpClientModule,
+        NativeScriptUISideDrawerModule,
         TNSFontIconModule.forRoot({
             'mdi': 'material-design-icons.css'
         })
@@ -34,7 +37,8 @@ import {LoaderService} from "~/services/loader.service";
     ],
     providers: [
         AuthGuard,
-        LoaderService
+        LoaderService,
+        LoginService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

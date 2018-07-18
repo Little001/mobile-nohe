@@ -5,16 +5,20 @@ import {RouterExtensions} from "nativescript-angular";
 import {platformNames} from "platform";
 import {device} from "platform";
 import {User} from "~/models/User";
-import {API_URL, APP_SET_TOKEN, getUnauthorizedHeaders} from "../config";
+import {API_URL, APP_SET_TOKEN, getAuthorizedHeaders, getUnauthorizedHeaders} from "../config";
 import {LoaderService} from "~/services/loader.service";
 
-interface LoginResponse {
+export interface LoginResponse {
     Token: string;
-    User: {
-        ID: number;
-        username: string;
-        role: number;
-    }
+    User: IUserResponse
+}
+
+export interface IUserResponse {
+    ID: number;
+    username: string;
+    role: number;
+    name: string;
+    surname: string;
 }
 
 @Injectable()
@@ -58,7 +62,9 @@ export class LoginService {
             this.user = new User({
                 ID: dataResponse.User.ID,
                 username: dataResponse.User.username,
-                role: dataResponse.User.role
+                role: dataResponse.User.role,
+                name: dataResponse.User.name,
+                surname: dataResponse.User.surname
             });
             this._isLogged = true;
             this.loader.hide();
@@ -91,6 +97,30 @@ export class LoginService {
             this.routerExtensions.navigate(["/login"], { clearHistory: true });
         }, () => {
             this.routerExtensions.navigate(["/login"], { clearHistory: true });
+        });
+    };
+
+    public checkToken(): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            this.http.post(API_URL + "checkToken", null, { headers: getAuthorizedHeaders() }).subscribe((data) => {
+
+                let dataResponse = data as IUserResponse;
+                this.user = new User({
+                    ID: dataResponse.ID,
+                    username: dataResponse.username,
+                    role: dataResponse.role,
+                    name: dataResponse.name,
+                    surname: dataResponse.surname,
+                });
+
+                resolve(true);
+                this.loader.hide();
+            }, () => {
+                reject(false);
+                appSettings.clear();
+                this.routerExtensions.navigate(["/login"], { clearHistory: true });
+                this.loader.hide();
+            });
         });
     };
 }

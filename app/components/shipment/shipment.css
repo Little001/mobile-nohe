@@ -1,23 +1,24 @@
 .header {
     width: 100%;
-    background: #e6e6f2;
-}
-.header-label {
-    width: 80%;
-    color: #091236;
-    font-size: 25px;
+    background: #091236;
+    color: white;
     padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 10px;
 }
-.header-logout {
+
+.header .menu-icon {
+    font-size: 35px;
+}
+.header .application-state-label {
+    padding-left: 35px;
+    padding-top: 7px;
+    font-size: 18px;
 }
 .logout-label {
     color: #091236;
     font-size: 45px;
     padding-right: 10px;
-}
-.scroll-view {
-    margin-top: 80px;
 }
 .form-field {
     margin-bottom: 15px;
@@ -61,4 +62,48 @@
 }
 .price {
     font-weight: bold;
+}
+
+.drawerContentText {
+    font-size: 13;
+    padding: 10;
+}
+
+.drawerContentButton {
+    horizontal-align: left;
+}
+
+.sideStackLayout {
+    background-color: white;
+}
+.sideStackLayout .divider {
+    background-color: gray;
+    height: 3;
+}
+
+.sideTitleStackLayout {
+    height: 110;
+    text-align: center;
+    vertical-align: center;
+    background-color: #091236;
+    color: white;
+    padding-left: 15px;
+}
+.sideTitleStackLayout Label {
+    horizontal-align: left;
+}
+.user-icon {
+    font-size: 40px;
+    padding-bottom: 20px;
+}
+
+.sideLabel {
+    padding: 10;
+}
+.sideLabel .side-text-icon {
+    font-size: 25px;
+    padding-right: 30px;
+}
+.sideLabel .side-text {
+    padding-top: 5px;
 }
