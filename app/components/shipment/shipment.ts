@@ -169,10 +169,10 @@ export class ShipmentComponent implements OnInit, AfterViewInit {
             ShipmentComponent.stopWatchLocation();
             this.loader.hide();
             this.routerExtensions.navigate(["/blank"], {clearHistory: true});
-            alert("Stav jízdy byl změněn");
+            this.changeStateDialog("")
         }, (error) => {
             this.loader.hide();
-            alert("Špatně zadané informace");
+            this.invalidInputs("Zkontrolujte si zda:\n-číslo zásilky souhlasí se zadaným kódem\n-zadaný kód je určen pro odstartování nebo pro ukončení zásilky");
         });
     }
 
@@ -215,23 +215,31 @@ export class ShipmentComponent implements OnInit, AfterViewInit {
             return false;
         }
         if (!this.id_shipment) {
-            this.invalidInputs("Nezadal jste číslo jízdy");
+            this.invalidInputs("Musíte zadat číslo jízdy");
             return false;
         }
         if (!this.code) {
-            this.invalidInputs("Nezadal jste kód");
+            this.invalidInputs("Musíte zadat kód");
             return false;
         }
         return true;
     }
 
     private afterChangePhotos() {
-        this.canTakePhoto = this.photos.length < 5;
+        this.canTakePhoto = this.photos.length < 6;
     }
 
     private invalidInputs(message: string): void {
         dialogs.alert({
-            title: "Nevalidní vstupy",
+            title: "Nesprávně zadané údaje",
+            message: message
+        }).then(() => {
+        });
+    }
+
+    private changeStateDialog(message: string): void {
+        dialogs.alert({
+            title: "Změna stavu jízdy",
             message: message
         }).then(() => {
         });

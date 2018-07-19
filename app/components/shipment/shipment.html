@@ -39,8 +39,9 @@
                         <!-- Start Shipment -->
                         <StackLayout *ngIf="!duringShipment">
                             <TextField class="form-field app-field" [(ngModel)]='id_shipment' hint="Číslo jízdy" ...></TextField>
-                            <TextField class="form-field app-field" [(ngModel)]='code' hint="Kód" ...></TextField>
+                            <TextField class="form-field app-field" [(ngModel)]='code' hint="Kód pro odstartování jizdy" ...></TextField>
                             <Button text="Začít jízdu" (tap)="resolveShipment()"></Button>
+                            <Button class="mdi photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
                         </StackLayout>
 
                         <!-- On the way Shipment -->
@@ -57,20 +58,18 @@
                                         <Label class="location-label" [text]='shipment.to.city' ></Label>
                                         <Label class="location-label" [text]='shipment.to.street' ></Label>
                                     </WrapLayout>
-                                </StackLayout>
-                                <StackLayout class="price-wrapper">
+                                    <Label class="h2" text="Cena: "></Label>
                                     <WrapLayout orientation="horizontal">
-                                        <Label text="Cena: "></Label>
                                         <Label class="price" [text]='shipment.price' ></Label>
                                         <Label class="price" text=",-Kč"></Label>
                                     </WrapLayout>
                                 </StackLayout>
                             </StackLayout>
-                            <TextField class="app-field" [(ngModel)]='code' hint="Kód" ...></TextField>
+                            <TextField class="app-field" [(ngModel)]='code' hint="Kód pro ukončení jízdy" ...></TextField>
                             <Button text="Ukončit jízdu" (tap)="resolveShipment()"></Button>
+                            <Button class="mdi photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
                         </StackLayout>
                         <WrapLayout orientation="horizontal" class="photo-list">
-                            <Button class="mdi photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
                             <StackLayout *ngFor="let photo of photos">
                                 <GridLayout class="photo-item" (longPress)="onPhotoContextMenu(photo.ID)">
                                     <Image [src]="photo.source"></Image>
