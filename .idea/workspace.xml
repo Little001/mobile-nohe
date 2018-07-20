@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b059800-a082-4767-8cec-3d5b38357308" name="Default" comment="">
+    <list default="true" id="5b059800-a082-4767-8cec-3d5b38357308" name="Default" comment="-změna chybových hlášek&#10;-stylování fotek">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/shipment/photo.ts" afterPath="$PROJECT_DIR$/app/components/shipment/photo.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/shipment/shipment.css" afterPath="$PROJECT_DIR$/app/components/shipment/shipment.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/shipment/shipment.html" afterPath="$PROJECT_DIR$/app/components/shipment/shipment.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/shipment/shipment.ts" afterPath="$PROJECT_DIR$/app/components/shipment/shipment.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config.ts" afterPath="$PROJECT_DIR$/app/config.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,11 +19,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="config.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="shipment.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="65" column="46" lean-forward="false" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
+            <state relative-caret-position="624">
+              <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -30,53 +42,19 @@
       <file leaf-file-name="photo.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/components/shipment/photo.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="5" column="26" lean-forward="false" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="material-design-icons.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/app/material-design-icons.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50304">
-              <caret line="2096" column="9" lean-forward="false" selection-start-line="2096" selection-start-column="1" selection-end-line="2096" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shipment.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="shipment.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="58" column="15" lean-forward="false" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
+            <state relative-caret-position="445">
+              <caret line="62" column="17" lean-forward="false" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shipment.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="173" column="31" lean-forward="true" selection-start-line="173" selection-start-column="31" selection-end-line="173" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#93#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="authGuard.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/authGuard.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#91#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -84,7 +62,7 @@
       <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
+            <state relative-caret-position="72">
               <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
@@ -93,21 +71,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.service.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/services/login.service.ts">
+      <file leaf-file-name="shipment.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1272">
-              <caret line="61" column="30" lean-forward="false" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
+            <state relative-caret-position="-3804">
+              <caret line="32" column="2" lean-forward="false" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="2" />
+              <folding>
+                <element signature="e#0#93#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/login/login.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="19" column="118" lean-forward="false" selection-start-line="19" selection-start-column="118" selection-end-line="19" selection-end-column="118" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="shipment.service.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/services/shipment.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-42">
+              <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/User.ts">
+      <file leaf-file-name="login.service.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/services/login.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+            <state relative-caret-position="2310">
+              <caret line="119" column="29" lean-forward="false" selection-start-line="119" selection-start-column="29" selection-end-line="119" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -126,17 +128,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>vertical</find>
-      <find>[text]</find>
-      <find>page_label</find>
-      <find>Injectable</find>
-      <find>@tInjectable</find>
-      <find>@Injectable</find>
-      <find>OPEN DRAWE</find>
-      <find>sideTitleStackLayout</find>
-      <find>sideLabel</find>
       <find>sideLightGrayLabel</find>
-      <find>sideStackLayout</find>
       <find>gray</find>
       <find>loginService</find>
       <find>info</find>
@@ -154,8 +146,18 @@
       <find>photo-list</find>
       <find>location-label</find>
       <find>price-wrapper</find>
-      <find>Kód</find>
       <find>changeStateDialog</find>
+      <find>scroll-view</find>
+      <find>page</find>
+      <find>Kód</find>
+      <find>this.photos</find>
+      <find>app-field</find>
+      <find>sideTitleStackLayout</find>
+      <find>sideLabel</find>
+      <find>form</find>
+      <find>font-size</find>
+      <find>logout-label</find>
+      <find>sideStackLayout</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\m.meravy\Documents\MyWok\mobile-nohe\app</dir>
@@ -195,8 +197,6 @@
         <option value="$PROJECT_DIR$/app/package.json" />
         <option value="$PROJECT_DIR$/app/app.component.html" />
         <option value="$PROJECT_DIR$/app/app.component.ts" />
-        <option value="$PROJECT_DIR$/app/components/shipment/photo.ts" />
-        <option value="$PROJECT_DIR$/app/components/login/login.ts" />
         <option value="$PROJECT_DIR$/app/main.ts" />
         <option value="$PROJECT_DIR$/app/i18n/cz.default.json" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -205,18 +205,20 @@
         <option value="$PROJECT_DIR$/app/components/login/loginView.html" />
         <option value="$PROJECT_DIR$/app/services/loader.service.ts" />
         <option value="$PROJECT_DIR$/app/services/shipment.service.ts" />
-        <option value="$PROJECT_DIR$/app/config.ts" />
         <option value="$PROJECT_DIR$/app/App_Resources/Android/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/App_Resources/Android/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/app.routing.ts" />
         <option value="$PROJECT_DIR$/app/app.module.ts" />
         <option value="$PROJECT_DIR$/app/authGuard.ts" />
-        <option value="$PROJECT_DIR$/app/services/login.service.ts" />
         <option value="$PROJECT_DIR$/app/models/User.ts" />
         <option value="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/app/material-design-icons.css" />
-        <option value="$PROJECT_DIR$/app/components/shipment/shipment.css" />
-        <option value="$PROJECT_DIR$/app/components/shipment/shipment.html" />
+        <option value="$PROJECT_DIR$/app/components/shipment/photo.ts" />
         <option value="$PROJECT_DIR$/app/components/shipment/shipment.ts" />
+        <option value="$PROJECT_DIR$/app/components/login/login.ts" />
+        <option value="$PROJECT_DIR$/app/services/login.service.ts" />
+        <option value="$PROJECT_DIR$/app/config.ts" />
+        <option value="$PROJECT_DIR$/app/components/shipment/shipment.html" />
+        <option value="$PROJECT_DIR$/app/components/shipment/shipment.css" />
       </list>
     </option>
   </component>
@@ -225,9 +227,6 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -337,6 +336,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile-nohe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile-nohe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="login" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -348,7 +369,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Freightily" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="typescript-compiler-editor-notification" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -810,7 +831,7 @@
       <workItem from="1530262222998" duration="1977000" />
       <workItem from="1531807781085" duration="4330000" />
       <workItem from="1531821117328" duration="17853000" />
-      <workItem from="1532009420111" duration="3704000" />
+      <workItem from="1532009420111" duration="13687000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1526677766014</created>
@@ -924,11 +945,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531898473155</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="-změna chybových hlášek&#10;-stylování fotek">
+      <created>1532014161493</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1532014161493</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="257349000" />
+    <option name="totallyTimeSpent" value="267332000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -980,6 +1008,22 @@
         <option value="$PROJECT_DIR$/app/components/shipment/shipment.js" />
         <option value="$PROJECT_DIR$/app/components/shipment/photo.js" />
         <option value="$PROJECT_DIR$/app/services/loader.service.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/functions.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/linter.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/dependencies.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/messages.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/modules.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/index.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/bundler.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/sourceMapGenerator.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/fs-utils.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/css.update.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/tomcat-run.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/config.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/clean-peon.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/send-bobwai-usage-report.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/debug.js" />
+        <option value="$PROJECT_DIR$/../../phoenix/peon/peon/karma.config.js" />
       </list>
     </option>
   </component>
@@ -1013,7 +1057,8 @@
     <MESSAGE value="na kazdym routování se kontroluje token,&#10;pridání bílého pozadí na start aplikace na mobilu," />
     <MESSAGE value="iconky a logo pro android&#10;nazev aplikace zmenen na NOHE" />
     <MESSAGE value="-implementace side-menu&#10;-stylovani menu a hlavicky&#10;-info o aplikaci&#10;-info o použití aplikace&#10;-presunutí logoutu do menu&#10;-login servise resi už i checkToken a pamatuje si usera" />
-    <option name="LAST_COMMIT_MESSAGE" value="-implementace side-menu&#10;-stylovani menu a hlavicky&#10;-info o aplikaci&#10;-info o použití aplikace&#10;-presunutí logoutu do menu&#10;-login servise resi už i checkToken a pamatuje si usera" />
+    <MESSAGE value="-změna chybových hlášek&#10;-stylování fotek" />
+    <option name="LAST_COMMIT_MESSAGE" value="-změna chybových hlášek&#10;-stylování fotek" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1026,16 +1071,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/App_Resources/Android/drawable-mdpi/background.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/App_Resources/Android/drawable-mdpi/icon.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/App_Resources/Android/drawable-xhdpi/icon.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1214,24 +1249,11 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/material-design-icons.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
           <caret line="40" column="1" lean-forward="false" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/loader.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-529">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1239,26 +1261,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="17" column="56" lean-forward="false" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/shipment.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#49#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1280,14 +1282,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/login.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1272">
-          <caret line="61" column="30" lean-forward="false" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/platforms/android/app/src/main/assets/app/material-design-icons.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -1303,37 +1297,97 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/shipment.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-42">
+          <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/loader.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="40" column="11" lean-forward="false" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/login/login.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="19" column="118" lean-forward="false" selection-start-line="19" selection-start-column="118" selection-end-line="19" selection-end-column="118" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/login.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2310">
+          <caret line="119" column="29" lean-forward="false" selection-start-line="119" selection-start-column="29" selection-end-line="119" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/shipment/photo.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="58" column="15" lean-forward="false" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="65" column="46" lean-forward="false" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
+        <state relative-caret-position="120">
+          <caret line="5" column="26" lean-forward="false" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="173" column="31" lean-forward="true" selection-start-line="173" selection-start-column="31" selection-end-line="173" selection-end-column="31" />
+        <state relative-caret-position="-3804">
+          <caret line="32" column="2" lean-forward="false" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="2" />
           <folding>
             <element signature="e#0#93#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/shipment/shipment.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="62" column="17" lean-forward="false" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>

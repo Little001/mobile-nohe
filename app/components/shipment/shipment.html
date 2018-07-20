@@ -3,8 +3,8 @@
         <StackLayout tkDrawerContent class="sideStackLayout">
             <StackLayout class="sideTitleStackLayout">
                 <Label class="mdi user-icon" [text]="'mdi-account-circle' | fonticon"></Label>
-                <Label [text]='user.name'></Label>
-                <Label [text]='user.surname'></Label>
+                <Label class="user-label" [text]='user.name'></Label>
+                <Label class="user-label" [text]='user.surname'></Label>
             </StackLayout>
             <StackLayout class="sideStackLayout">
                 <StackLayout class="sideLabel" (tap)="aboutCompanyDialog()">
@@ -40,8 +40,10 @@
                         <StackLayout *ngIf="!duringShipment">
                             <TextField class="form-field app-field" [(ngModel)]='id_shipment' hint="Číslo jízdy" ...></TextField>
                             <TextField class="form-field app-field" [(ngModel)]='code' hint="Kód pro odstartování jizdy" ...></TextField>
-                            <Button text="Začít jízdu" (tap)="resolveShipment()"></Button>
-                            <Button class="mdi photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
+                            <StackLayout class="buttons-section">
+                                <Button class="button-text" text="Začít jízdu" (tap)="resolveShipment()"></Button>
+                                <Button class="mdi photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
+                            </StackLayout>
                         </StackLayout>
 
                         <!-- On the way Shipment -->
@@ -66,8 +68,10 @@
                                 </StackLayout>
                             </StackLayout>
                             <TextField class="app-field" [(ngModel)]='code' hint="Kód pro ukončení jízdy" ...></TextField>
-                            <Button text="Ukončit jízdu" (tap)="resolveShipment()"></Button>
-                            <Button class="mdi photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
+                            <StackLayout class="buttons-section">
+                                <Button class="button-text" text="Ukončit jízdu" (tap)="resolveShipment()"></Button>
+                                <Button class="mdi photo-button" isEnabled="{{canTakePhoto}}" [text]="'mdi-add-a-photo' | fonticon" (tap)="onTakePhoto()"></Button>
+                            </StackLayout>
                         </StackLayout>
                         <WrapLayout orientation="horizontal" class="photo-list">
                             <StackLayout *ngFor="let photo of photos">

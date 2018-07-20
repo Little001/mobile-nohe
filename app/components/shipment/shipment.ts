@@ -162,7 +162,7 @@ export class ShipmentComponent implements OnInit, AfterViewInit {
         this.loader.show();
         let photosInBase64 = [];
         for (let i = 0; i < this.photos.length; i++) {
-            photosInBase64.push(this.photos[i].source.toBase64String("jpg"));
+            photosInBase64.push(this.photos[i].base64);
         }
 
         this.shipmentService.postCode(this.id_shipment, this.code, photosInBase64).subscribe((data) => {
@@ -199,6 +199,7 @@ export class ShipmentComponent implements OnInit, AfterViewInit {
                 this.source.fromAsset(imageAsset).then((imageSource) => {
                     let photo = new Photo();
                     photo.ID = this.idPhoto;
+                    photo.base64= imageSource.toBase64String("jpg");
                     photo.source = imageSource;
                     this.idPhoto++;
                     this.photos.push(photo);

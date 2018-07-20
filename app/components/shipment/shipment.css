@@ -6,19 +6,30 @@
     padding-bottom: 10px;
     padding-left: 10px;
 }
-
+.app-field {
+    font-size: 20px;
+}
+.button-text {
+    font-size: 20px;
+}
+.page {
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
 .header .menu-icon {
-    font-size: 35px;
+    font-size: 45px;
 }
 .header .application-state-label {
-    padding-left: 35px;
-    padding-top: 7px;
-    font-size: 18px;
+    padding-left: 30px;
+    padding-top: 14px;
+    font-size: 20px;
 }
-.logout-label {
-    color: #091236;
-    font-size: 45px;
-    padding-right: 10px;
+.buttons-section {
+    margin-top: 40px;
+}
+.buttons-section Button {
+    margin-top: 20px;
+    height: 100px;
 }
 .form-field {
     margin-bottom: 15px;
@@ -32,7 +43,7 @@
     height: 500px;
 }
 .photo-button {
-    font-size: 30px;
+    font-size: 40px;
 }
 .photo-item {
     padding-right: 5px;
@@ -44,24 +55,19 @@
     margin-top: 15px;
 }
 .h2 {
-    font-size: 15px;
+    font-size: 20px;
     margin-top: 10px;
     font-weight: bold;
     padding-bottom: 4px;
 }
 .location-label {
     color: black;
-    font-size: 15px;
+    font-size: 20px;
     padding-right: 20px;
 }
 .price {
     font-weight: bold;
     color: red;
-}
-
-.drawerContentText {
-    font-size: 13;
-    padding: 10;
 }
 
 .drawerContentButton {
@@ -77,28 +83,33 @@
 }
 
 .sideTitleStackLayout {
-    height: 110;
+    height: 150;
     text-align: center;
     vertical-align: center;
     background-color: #091236;
     color: white;
-    padding-left: 15px;
+    padding-left: 20px;
 }
 .sideTitleStackLayout Label {
     horizontal-align: left;
 }
 .user-icon {
-    font-size: 40px;
-    padding-bottom: 20px;
+    font-size: 50px;
+    padding-bottom: 25px;
 }
-
+.user-label {
+    font-size: 25px;
+}
 .sideLabel {
-    padding: 10;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 .sideLabel .side-text-icon {
-    font-size: 25px;
+    font-size: 30px;
     padding-right: 30px;
 }
 .sideLabel .side-text {
-    padding-top: 5px;
+    font-size: 25px;
 }
